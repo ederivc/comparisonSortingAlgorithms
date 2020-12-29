@@ -1,0 +1,126 @@
+button:
+generate_info -> Application ****
+min_value -> Scale
+max_value -> Scale
+speed_var -> Scale
+combo_algorithm (list)-> Combo
+random_list -> Application *****
+algo_keys -> Application *****
+delete_all -> Application (¿?)
+
+values =jhgjhg, [generate_info, algo_keys, self.scale_config.min_value_number, 
+        self.scale_config.max_value_number, self.scale_config.speed_value, [1, 2, 3]], [canva1, canva2, canva3]
+
+generate = 1, 0
+algo_keys = 1, 1
+min_value = 1, 2
+max_value = 1, 3
+speed_var = 1, 4
+combo_algorithm1 = 1,5,0
+combo_algorithm1 = 1,5,1
+combo_algorithm1 = 1,5,2
+canva1 = 1,6,0
+canva2 = 1,6,1
+canva3 = 1,6,2
+
+
+def display_options(self) -> None:
+        
+        lower_frame = tk.Frame(self.window, bg = "#1b3945")
+        lower_frame.place(relx = 0, rely = 0.8, relwidth = 1, relheight = 0.2)
+
+        algorithm_title = tk.Label(lower_frame, text = "ALGORITHMS", width = 30, height = 2, 
+        font = "Helvetica 15 bold", bg = "#1b3945", fg = "white")
+        algorithm_title.place(x = 140, y = 20)
+
+        values_title = tk.Label(lower_frame, text = "VALUES", width = 30, height = 2, 
+        font = "Helvetica 15 bold", bg = "#1b3945", fg = "white")
+        values_title.place(x = 695, y = 20)
+
+        options_title = tk.Label(lower_frame, text = "OPTIONS", width = 30, height = 2, 
+        font = "Helvetica 15 bold", bg = "#1b3945", fg = "white")
+        options_title.place(x = 1180, y = 20)
+
+        algorithm_label = tk.Label(lower_frame, text = "Algorithm 1", width = 20)
+        algorithm_label.place(x = 20, y = 80)
+
+        combo_algorithm1 = ttk.Combobox(lower_frame,
+                                    values=[
+                                            "Bubble sort",
+                                            "Selection sort",
+                                            "Insertion sort",
+                                            "Cocktail shaker sort",
+                                            "Shell sort"],
+                                            font = (8))
+        combo_algorithm1.place(x = 20, y = 120)
+        combo_algorithm1.config(font = ("Helvetica"), width = 16)
+        combo_algorithm1.current(0)
+
+        algorithm_label2 = tk.Label(lower_frame, text = "Algorithm 2", width = 20)
+        algorithm_label2.place(x = 220, y = 80)
+
+        combo_algorithm2 = ttk.Combobox(lower_frame,
+                                    values=[
+                                            "Bubble sort",
+                                            "Selection sort",
+                                            "Insertion sort",
+                                            "Cocktail shaker sort",
+                                            "Shell sort"],
+                                            font = (8))
+        combo_algorithm2.place(x = 220, y = 120)
+        combo_algorithm2.config(font = ("Helvetica"), width = 16)
+        combo_algorithm2.current(0)
+
+        algorithm_label3 = tk.Label(lower_frame, text = "Algorithm 3", width = 20)
+        algorithm_label3.place(x = 420, y = 80)
+
+        combo_algorithm3 = ttk.Combobox(lower_frame,
+                                    values=[
+                                            "Bubble sort",
+                                            "Selection sort",
+                                            "Insertion sort",
+                                            "Cocktail shaker sort",
+                                            "Shell sort"],
+                                            font = (8))
+        combo_algorithm3.place(x = 420, y = 120)
+        combo_algorithm3.config(font = ("Helvetica"), width = 16)
+        combo_algorithm3.current(0)
+
+        min_value = tk.Label(lower_frame, text = "Min. Value", width = 20)
+        min_value.place(x = 670, y = 80)
+
+        min_value_number = tk.Scale(lower_frame, from_=1, to=1000, orient=tk.HORIZONTAL, width = 5)
+        min_value_number.place(x = 700, y = 120)
+
+        max_value = tk.Label(lower_frame, text = "Max. Value", width = 20)
+        max_value.place(x = 850, y = 80)
+
+        max_value_number = tk.Scale(lower_frame, from_=1, to=1000, orient=tk.HORIZONTAL, width = 5)
+        max_value_number.place(x = 880, y = 120)
+
+        speed = tk.Label(lower_frame, text = "Speed", width = 19)
+        speed.place(x = 1100, y = 80)
+
+        speed_var = tk.Scale(lower_frame, from_=1, to=5, orient=tk.HORIZONTAL, width = 5)
+        speed_var.place(x = 1130, y = 120)
+
+        new_info_btn = tk.Button(lower_frame, text = "Generate graph", activebackground = "#468499",
+        width = 12, command = lambda: self.generate_info(min_value_number.get(), max_value_number.get()))
+        new_info_btn.place(x = 1380, y = 80)
+
+        sort_items = tk.Button(lower_frame, text = "Sort",activebackground = "#468499", width = 12,
+        command = lambda: controller.select_algorithm(speed_var.get(), [combo_algorithm1.get(), 
+        combo_algorithm2.get(), combo_algorithm3.get()], random_list, self.algo_keys))
+        sort_items.place(x = 1300, y = 130)
+
+        delete_btn = tk.Button(lower_frame, text = "Delete all",activebackground = "#468499", width = 12,
+        command = self.delete_all)
+        delete_btn.place(x = 1460, y = 130)
+
+        #pause_btn = tk.Button(lower_frame, text = "Pause", activebackground = "#468499",
+        #width = 12, command = threading.Thread(target=self.delete_all).start)
+        #pause_btn.place(x = 1480, y = 80)
+
+        #img_label = tk.Label(lower_frame, background = "white", image = self.dark_image)
+        #img_label.place(x = 1545, y = 80)
+        #img_label.bind('<Button-1>', lambda x: self.dark_screen(lower_frame))
