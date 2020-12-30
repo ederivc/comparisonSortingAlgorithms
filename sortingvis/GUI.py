@@ -115,7 +115,7 @@ class CreateLabel(tk.Label):
             self.values_title, self.options_title, self.img_label]
         if obj.change_color.start:
             sortingvis.templates.ChangeColor(
-                _list, down="#463f3a", up_1="#8a817c", up_2="#bcb8b1", up_3="#8a817c"
+                _list, down="#1b4332", up_1="#52b788", up_2="#74c69d", up_3="#52b788"
             )
             obj.change_color.start = False
         
