@@ -15,7 +15,9 @@ from sortingvis.algorithms import (
     selection_sort, 
     insertion_sort, 
     cocktail_sort, 
-    shell_sort
+    shell_sort,
+    comb_sort,
+    gnome_sort
 )
 
 
@@ -182,7 +184,9 @@ class CreateCombo(ttk.Combobox):
                                 "Selection sort",
                                 "Insertion sort",
                                 "Cocktail shaker sort",
-                                "Shell sort"],
+                                "Shell sort",
+                                "Comb sort",
+                                "Gnome sort"],
                                 font = combo_font,
                                 width = 16)
 
@@ -234,7 +238,9 @@ class Application:
                     "insertion" : insertion_sort,
                     "selection" : selection_sort,
                     "cocktail" : cocktail_sort,
-                    "shell" : shell_sort
+                    "shell" : shell_sort,
+                    "comb" : comb_sort,
+                    "gnome" : gnome_sort
         }
 
         self.display = Options(
