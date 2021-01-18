@@ -25,6 +25,10 @@ class Time:
     def __init__(self) -> None:
         self.time_now = 0
 
+class Sorting:
+    def __init__(self) -> None:
+        self.status = "waiting"
+
 class Setup:
     MAX_WIDTH = 1600
     MAX_HEIGHT = 1000
@@ -67,5 +71,9 @@ class Objects:
         self.time_1 = Time()
         self.time_2 = Time()
         self.time_3 = Time()
+
+        self.is_sorting_1 = Sorting()
+        self.is_sorting_2 = Sorting()
+        self.is_sorting_3 = Sorting()
 
         self.change_color = Data()
