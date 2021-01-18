@@ -3,10 +3,11 @@ import time
 from random import randint
 from datetime import datetime
 
+from typing import Any
 
 def bubble_sort(
     delay: float, _list: list, change: bool , comparisons: int, 
-    data: list, _time: int
+    data: list, _time: int, is_sorting: Any
 ) -> None:
     _time.time_now = datetime.now()
     cont = 1
@@ -21,6 +22,7 @@ def bubble_sort(
 
                 data.value = [comparisons.number, colors]
 
+                is_sorting.status = "sorting"
                 change.start = False
 
         cont += 1
@@ -31,7 +33,7 @@ def bubble_sort(
 
 def selection_sort(
     delay: float, _list: list, change: bool , comparisons: int, 
-    data: list, _time: int
+    data: list, _time: int, is_sorting: Any
 ) -> None:
     _time.time_now = datetime.now()
     for i in range(len(_list.value)):
@@ -44,6 +46,7 @@ def selection_sort(
 
             data.value = [comparisons.number, colors]
             
+            is_sorting.status = "sorting"
             change.start = False
 
             if _list.value[min_idx] > _list.value[j]:
@@ -57,7 +60,7 @@ def selection_sort(
 
 def insertion_sort(
     delay: float, _list: list, change: bool , comparisons: int, 
-    data: list, _time: int
+    data: list, _time: int, is_sorting: Any
 ) -> None:
     _time.time_now = datetime.now()
     actual = 1
@@ -71,6 +74,7 @@ def insertion_sort(
 
             data.value = [comparisons.number, colors]
             
+            is_sorting.status = "sorting"
             change.start = False
 
             _list.value[before], _list.value[before-1] = _list.value[before-1], _list.value[before]
@@ -83,7 +87,7 @@ def insertion_sort(
 
 def cocktail_sort(
     delay: float, _list: list, change: bool , comparisons: int, 
-    data: list, _time: int
+    data: list, _time: int, is_sorting: Any
 ) -> None:
     _time.time_now = datetime.now()
     temp = 1
@@ -110,6 +114,7 @@ def cocktail_sort(
 
                 data.value = [comparisons.number, colors]
                 
+                is_sorting.status = "sorting"
                 change.start = False
 
         if (swapped == False):
@@ -145,7 +150,7 @@ def cocktail_sort(
 
 def shell_sort(
     delay: float, _list: list, change: bool , comparisons: int, 
-    data: list, _time: int
+    data: list, _time: int, is_sorting: Any
 ) -> None:
     _time.time_now = datetime.now()
     div = len(_list.value) // 2
@@ -162,6 +167,7 @@ def shell_sort(
 
                 data.value = [comparisons.number, colors]
 
+                is_sorting.status = "sorting"
                 change.start = False
 
                 _list.value[comparison], _list.value[comparison - div] =  _list.value[comparison - div], _list.value[comparison]
@@ -169,6 +175,88 @@ def shell_sort(
                 
 
         div = div // 2
+
+    _time.time_now = (datetime.now() - _time.time_now)
+    change.start = "animate"
+
+def getNextGap(gap): 
+    gap = int((gap * 10)/13)
+
+    if gap < 1: 
+        return 1
+
+    return gap 
+
+
+def comb_sort(
+    delay: float, _list: list, change: bool , comparisons: int, 
+    data: list, _time: int, is_sorting: Any   
+) -> None:
+    _time.time_now = datetime.now()
+    n = len(_list.value)  
+    gap = n 
+    swapped = True
+
+    while gap !=1 or swapped == 1: 
+
+        gap = getNextGap(gap) 
+
+        swapped = False
+  
+        for i in range(0, n-gap): 
+            if _list.value[i] > _list.value[i + gap]: 
+                
+                _list.value[i], _list.value[i + gap]=_list.value[i + gap], _list.value[i] 
+                comparisons.number += 1
+                time.sleep(delay)
+
+                colors = ["#99badd" if x == i
+                        else "#ec7788" if x == gap
+                        else "#badd99" if x > gap
+                        else "#ffa500" for x in range(len(_list.value))]
+
+                data.value = [comparisons.number, colors]
+
+                is_sorting.status = "sorting"
+                change.start = False
+
+                swapped = True
+
+    _time.time_now = (datetime.now() - _time.time_now)
+    change.start = "animate"
+
+
+def gnome_sort(    
+    delay: float, _list: list, change: bool , comparisons: int, 
+    data: list, _time: int, is_sorting: Any
+) -> None:
+    _time.time_now = datetime.now()
+    n = len(_list.value)
+    index = 0
+
+    while index < n: 
+
+        if index == 0: 
+            index = index + 1
+
+        if _list.value[index] >= _list.value[index - 1]: 
+            index = index + 1
+
+            comparisons.number += 1
+            time.sleep(delay)
+
+            colors = ["#99badd" if x == index
+                        else "#ec7788" if x == index - 1
+                        else "#ffa500" for x in range(len(_list.value))]
+
+            data.value = [comparisons.number, colors]
+
+            is_sorting.status = "sorting"
+            change.start = False
+
+        else: 
+            _list.value[index], _list.value[index-1] = _list.value[index-1], _list.value[index] 
+            index = index - 1
 
     _time.time_now = (datetime.now() - _time.time_now)
     change.start = "animate"
