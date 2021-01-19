@@ -47,7 +47,6 @@ class Options(tk.Frame):
         self.buttons_conf = CreateButton(self, values, canvas_list)
 
     def _config(self) -> None:
-        bg = "#1b3945"
         self.config(bg = "#242038")
         self.place(relx = 0, rely = 0.8, relwidth = 1, relheight = 0.2)
 
